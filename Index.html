@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Real1Editor — Creative Hub</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>🎬 Real1Editor — Creative Hub</h1>
+    <p class="slogan">Elite Video Editing | Creativity meets precision</p>
+    <nav class="cta-row">
+      <button id="enterHub" class="btn primary">Enter Hub</button>
+    </nav>
+  </header>
+
+  <main id="app" class="container hidden">
+    <section class="card">
+      <h2>🎬 Portfolio</h2>
+      <div class="grid" id="portfolioGrid">
+        <!-- JS will populate thumbnails/links -->
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>💼 Services</h2>
+      <ul id="servicesList">
+        <li>• YouTube long-form editing (story & pacing)</li>
+        <li>• TikTok & Reels viral-ready edits</li>
+        <li>• Motion graphics & transitions</li>
+        <li>• Custom requests & packages</li>
+      </ul>
+      <button id="requestService" class="btn">Request Service</button>
+    </section>
+
+    <section class="card">
+      <h2>📋 Register a Project</h2>
+      <form id="registerForm">
+        <input name="name" placeholder="Full name" required />
+        <input name="email" type="email" placeholder="Email" required />
+        <input name="phone" placeholder="Phone (+251...)" />
+        <select name="service" required>
+          <option value="">Select service</option>
+          <option value="youtube">YouTube Editing</option>
+          <option value="shorts">Short-Form (TikTok/Reels)</option>
+          <option value="motion">Motion Graphics</option>
+        </select>
+        <textarea name="notes" placeholder="Project details (brief)"></textarea>
+        <button type="submit" class="btn primary">Submit Registration</button>
+      </form>
+      <div class="note">We will contact you within 24 hours.</div>
+    </section>
+
+    <section class="card">
+      <h2>💭 Suggestions & Feedback</h2>
+      <form id="feedbackForm">
+        <input name="name" placeholder="Your name (optional)" />
+        <textarea name="message" placeholder="Your feedback, idea, or critique" required></textarea>
+        <button type="submit" class="btn">Send Feedback</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>🌐 More Links</h2>
+      <div class="grid links">
+        <a class="link" href="https://linktr.ee/real1editor" target="_blank">🔗 Linktree</a>
+        <a class="link" href="https://behance.net/real1editor" target="_blank">🎨 Behance</a>
+        <a class="link" href="https://youtube.com/yourchannel" target="_blank">▶️ YouTube</a>
+        <a class="link" href="https://www.upwork.com/freelancers/~your" target="_blank">🎯 Upwork</a>
+        <a class="link" href="https://linkedin.com/in/real1editor" target="_blank">🤵 LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root{--bg:#0f1724;--card:#0b1220;--accent:#4f46e5;--muted:#94a3b8;--text:#e6eef8;}
+*{box-sizing:border-box}
+body{font-family:Inter,Segoe UI,Roboto,Arial; background:linear-gradient(180deg,#05060a, #071226); color:var(--text); margin:0; -webkit-font-smoothing:antialiased}
+.hero{padding:22px;text-align:center}
+.hero h1{margin:0;font-size:20px}
+.hero .slogan{color:var(--muted);margin:6px 0 14px}
+.container{padding:16px;max-width:760px;margin:0 auto;}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;margin-bottom:14px;border:1px solid rgba(255,255,255,0.03)}
+.btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:8px;color:var(--text);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white}
+.grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.grid .link,.grid .thumb{background:rgba(255,255,255,0.03);padding:10px;border-radius:8px;min-width:120px;text-decoration:none;color:var(--text);display:inline-block}
+input,select,textarea{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text)}
+textarea{min-height:90px}
+.note{color:var(--muted);font-size:13px;margin-top:8px}
+.hidden{display:none}
+
+
+
+
+
+
+
+
+
+// Configuration (fill only link placeholders here)
+const PORTFOLIO = [
+  {title:"YouTube - Hair Oil Edit", url:"https://youtube.com/watch?v=xxx"},
+  {title:"TikTok Viral Edit", url:"https://vm.tiktok.com/xxx"},
+  {title:"Reels - Before/After", url:"https://instagram.com/p/xxx"}
+];
+
+document.getElementById('enterHub').onclick = () => {
+  document.getElementById('app').classList.remove('hidden');
+  window.scrollTo(0,0);
+};
+
+// populate portfolio
+const grid = document.getElementById('portfolioGrid');
+PORTFOLIO.forEach(item=>{
+  const a = document.createElement('a');
+  a.className='thumb';
+  a.href = item.url;
+  a.target = '_blank';
+  a.innerText = item.title;
+  grid.appendChild(a);
+});
+
+// register submit: send to /api/register
+document.getElementById('registerForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form).entries());
+  try{
+    const res = await fetch('/api/register', {
+      method:'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const j = await res.json();
+    if(j.ok) { alert('✅ Registration sent!'); form.reset(); }
+    else alert('❌ Error: ' + (j.error || 'server'));
+  }catch(err){ alert('⚠️ Network error'); console.error(err) }
+});
+
+// feedback submit: send to /api/feedback
+document.getElementById('feedbackForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form).entries());
+  try{
+    const res = await fetch('/api/feedback', {
+      method:'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    const j = await res.json();
+    if(j.ok){ alert('💬 Feedback sent — thank you!'); form.reset(); }
+    else alert('❌ Error sending feedback');
+  }catch(err){ alert('⚠️ Network error'); console.error(err) }
+});
