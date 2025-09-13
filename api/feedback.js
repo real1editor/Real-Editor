@@ -3,8 +3,8 @@ const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({error:'method'});
-  const BOT_TOKEN = '7999488073:AAFWVQsr1CBqf8u8Upj8Y4PjOyxa9bNjNJ8';
-  const ADMIN_CHAT = '8078820148';
+  const BOT_TOKEN = 7999488073:AAFWVQsr1CBqf8u8Upj8Y4PjOyxa9bNjNJ8;
+  const ADMIN_CHAT = 8078820148;
   if(!BOT_TOKEN || !ADMIN_CHAT) return res.status(500).json({error:'missing env'});
 
   const { name, message: msg } = req.body || {};
