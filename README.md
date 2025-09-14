@@ -23,4 +23,26 @@ Welcome to Real1Editor, a sleek Telegram-powered mini app for creative video edi
 
 ---
 
-## 📦 Folder Structure
+# Real1Editor — Creative Hub (Refactor)
+
+This project is a modern refactor of the original mini-app into:
+
+- Frontend: React + Vite + Tailwind CSS + Framer Motion + Lucide icons
+- Backend: Express.js (wrapped for serverless on Vercel), Telegram notifications, fallback email (nodemailer), JSON backup
+- Designed for a cinematic dark aesthetic with responsive UI and real-time validation
+
+---
+
+## Quickstart (local dev)
+
+You will run two projects concurrently: frontend and api.
+
+### 1. Frontend
+
+`bash
+cd frontend
+npm install
+# dev server
+npm run dev
+# build for production
+npm run build
