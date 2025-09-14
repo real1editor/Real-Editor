@@ -1,40 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Real1Editor — Creative Hub</title>
-  <link rel="stylesheet" href="/style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <div class="container py-4">
-    <header class="text-center mb-4">
-      <h1>🎬 Real1Editor — Creative Hub</h1>
-      <p class="text-muted">Elite Video Editing | Creativity meets precision</p>
-      <button id="enterHub" class="btn btn-primary">Enter Hub</button>
-    </header>
+  <header class="hero">
+    <h1>🎬 Real1Editor — Creative Hub</h1>
+    <p class="slogan">Elite Video Editing | Creativity meets precision</p>
+    <nav class="cta-row">
+      <button id="enterHub" class="btn primary">Enter Hub</button>
+    </nav>
+  </header>
 
-    <main id="app" class="d-none">
-      <section class="card p-3 mb-3">
-        <h2>🎬 Portfolio</h2>
-        <div class="row" id="portfolioGrid"></div>
-      </section>
+  <main id="app" class="container hidden">
+    <section class="card">
+      <h2>🎬 Portfolio</h2>
+      <div class="grid" id="portfolioGrid">
+        <!-- JS will populate thumbnails/links -->
+      </div>
+    </section>
 
-      <section class="card p-3 mb-3">
-        <h2>💼 Services</h2>
-        <ul>
-          <li>YouTube long-form editing</li>
-          <li>TikTok & Reels viral edits</li>
-          <li>Motion graphics & transitions</li>
-          <li>Custom packages</li>
-        </ul>
-        <button id="requestService" class="btn btn-outline-primary mt-2">Request Service</button>
-      </section>
+    <section class="card">
+      <h2>💼 Services</h2>
+      <ul id="servicesList">
+        <li>• YouTube long-form editing (story & pacing)</li>
+        <li>• TikTok & Reels viral-ready edits</li>
+        <li>• Motion graphics & transitions</li>
+        <li>• Custom requests & packages</li>
+      </ul>
+      <button id="requestService" class="btn">Request Service</button>
+    </section>
 
-      <section class="card p-3 mb-3">
-        <h2>📋 Register a Project</h2>
+    <section class="card">
+      <h2>📋 Register a Project</h2>
+      <form id="registerForm">
+        <input name="name" placeholder="Full name" required />
+        <input name="email" type="email" placeholder="Email" required />
+        <input name="phone" placeholder="Phone (+251...)" />
+        <select name="service" required>
+          <option value="">Select service</option>
+          <option value="youtube">YouTube Editing</option>
+          <option value="shorts">Short-Form (TikTok/Reels)</option>
+          <option value="motion">Motion Graphics</option>
+        </select>
+        <textarea name="notes" placeholder="Project details (brief)"></textarea>
+        <button type="submit" class="btn primary">Submit Registration</button>
+      </form>
+      <div class="note">We will contact you within 24 hours.</div>
+    </section>
+
+    <section class="card">
+      <h2>💭 Suggestions & Feedback</h2>
+      <form id="feedbackForm">
+        <input name="name" placeholder="Your name (optional)" />
+        <textarea name="message" placeholder="Your feedback, idea, or critique" required></textarea>
+        <button type="submit" class="btn">Send Feedback</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>🌐 More Links</h2>
+      <div class="grid links">
+        <a class="link" href="https://linktr.ee/real1editor" target="_blank">🔗 Linktree</a>
+        <a class="link" href="https://behance.net/real1editor" target="_blank">🎨 Behance</a>
+        <a class="link" href="https://youtube.com/yourchannel" target="_blank">▶️ YouTube</a>
+        <a class="link" href="https://www.upwork.com/freelancers/~your" target="_blank">🎯 Upwork</a>
+        <a class="link" href="https://linkedin.com/in/real1editor" target="_blank">🤵 LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+                                                                       </html>        <h2>📋 Register a Project</h2>
         <form id="registerForm">
           <input name="name" class="form-control mb-2" placeholder="Full name" required />
           <input name="email" type="email" class="form-control mb-2" placeholder="Email" required />
