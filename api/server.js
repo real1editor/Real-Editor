@@ -29,7 +29,7 @@ app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISO
 // For local dev you might run node server.js
 if (process.env.NODE_ENV !== 'production') {
   const port = process.env.PORT || 3000;
-  app.listen(port, () => console.log(API running on http://localhost:${port}));
+  app.listen(port, () => console.log(`API running on http://localhost:${port}`));
 }
 
 // Export handler for serverless platforms
