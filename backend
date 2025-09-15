@@ -1,0 +1,4 @@
+cd api
+npm install
+# run the express server locally:
+NODE_ENV=development node server.js
